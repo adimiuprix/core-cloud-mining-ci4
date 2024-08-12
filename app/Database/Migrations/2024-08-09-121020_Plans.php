@@ -33,11 +33,11 @@ class Plans extends Migration
             ],
             'earning_rate' => [
                 'type'           => 'DECIMAL',
-                'constraint'     => 20,8
+                'constraint'     => '20,8'
             ],
             'price' => [
                 'type'       => 'DECIMAL',
-                'constraint' => 20,8,
+                'constraint' => '20,8',
             ],
             'duration' => [
                 'type'           => 'INT',
@@ -45,7 +45,7 @@ class Plans extends Migration
             ],
             'profit' => [
                 'type'           => 'DECIMAL',
-                'constraint'     => 20,8
+                'constraint'     => '20,8'
             ],
         ]);
         $this->forge->addKey('id', true);
