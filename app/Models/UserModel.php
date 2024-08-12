@@ -95,11 +95,11 @@ class UserModel extends Model
                       ->where('uph.user_id', $data['user_id'])
                       ->where('uph.status', 'active');
 
-        $res = $builder->get()->getResultArray();
+        $result = $builder->get()->getResultArray();
 
         $earning = 0;
-        if ($res) {
-            foreach ($res as $val) {
+        if ($result) {
+            foreach ($result as $val) {
                 $date1 = time();
                 $date2 = $val['last_sum'] ?: strtotime($val['created_at']);
                 $sec = $date1 - $date2;

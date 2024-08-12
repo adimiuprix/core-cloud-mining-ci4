@@ -35,10 +35,6 @@ class Plans extends Migration
                 'type'           => 'DECIMAL',
                 'constraint'     => 20,8
             ],
-            'image' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 255,
-            ],
             'price' => [
                 'type'       => 'DECIMAL',
                 'constraint' => 20,8,
@@ -50,10 +46,6 @@ class Plans extends Migration
             'profit' => [
                 'type'           => 'DECIMAL',
                 'constraint'     => 20,8
-            ],
-            'speed' => [
-                'type'       => 'INT',
-                'constraint' => 100,
             ],
         ]);
         $this->forge->addKey('id', true);

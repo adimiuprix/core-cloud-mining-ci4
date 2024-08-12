@@ -16,16 +16,6 @@ class PlanModel extends Model
         $this->UserPlanHistoryModel = new UserPlanHistoryModel();
     }
 
-    public function getDefaultPlan()
-    {
-        return $this->where('is_default', 1)->first();
-    }
-
-    public function getPaidPlans()
-    {
-        return $this->where('is_default', 0)->findAll();
-    }
-
     public function plansCron(array $data_session): void
     {
         $plans = $this->UserPlanHistoryModel
