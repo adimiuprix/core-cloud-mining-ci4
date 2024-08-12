@@ -72,11 +72,7 @@ class UserController extends BaseController
 
         $active_plans = (array)$this->userPlanHistoryModel->getActiveUserPlans($user_session['user_id']);
 
-        $userEarningRate = 0;
-        foreach($active_plans as $plan){
-            $plan = (object)$plan;
-            $userEarningRate += $plan->earning_rate;
-        }
+        $userEarningRate = array_sum(array_column($active_plans, 'earning_rate'));
 
         return view('dashboard', [
             'address' => $user_session['username'],
