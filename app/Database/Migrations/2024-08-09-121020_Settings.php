@@ -38,6 +38,17 @@ class Settings extends Migration
         ]);
         $this->forge->addKey('id', true);
         $this->forge->createTable('settings');
+
+        $initialData = [
+            [
+                'currency_name'         => 'Troncoin',
+                'currency_symbol'        => 'TRX',
+                'currency_code'     => 'TRX',
+                'wallet_min'           => '10',
+                'wallet_max'      => '60',
+            ],
+        ];
+        $this->db->table('settings')->insertBatch($initialData);
     }
 
     public function down()
