@@ -11,35 +11,32 @@ class UserPlanHistory extends Migration
         $this->forge->addField([
             'id' => [
                 'type'           => 'INT',
-                'constraint'     => 100,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
             'user_id' => [
-                'type'           => 'INT',
-                'constraint'     => 100
+                'type'     => 'INT',
+                'unsigned' => true,
             ],
             'plan_id' => [
-                'type'           => 'INT',
-                'constraint'     => 100
+                'type'     => 'INT',
+                'unsigned' => true,
             ],
             'status' => [
                 'type'       => 'ENUM',
                 'constraint' => ['active', 'inactive'],
-                'default'  => 'active'
+                'default'    => 'active',
             ],
             'last_sum' => [
-                'type'           => 'BIGINT',
+                'type' => 'BIGINT',
             ],
             'expire_date' => [
-                'type'           => 'DATE',
-                'null'     => true
+                'type' => 'DATE',
+                'null' => true,
             ],
-            'created_at' => [
-                'type'       => 'DATE',
-                'constraint' => 'CURRENT_TIMESTAMP',
-            ],
+            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
         ]);
+
         $this->forge->addKey('id', true);
         $this->forge->createTable('user_plan_history');
     }

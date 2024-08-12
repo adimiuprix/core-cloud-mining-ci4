@@ -36,16 +36,11 @@ class UserWithdrawal extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '191',
             ],
-            'created_at' => [
-                'type'       => 'TIMESTAMP',
-                'default'    => 'CURRENT_TIMESTAMP',
-                'null'       => false,
-                'on_update'  => 'CURRENT_TIMESTAMP',
-            ],
             'date_paid' => [
                 'type' => 'TIMESTAMP',
                 'null' => true,
             ],
+            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
         ]);
         $this->forge->addKey('id', true);
         $this->forge->createTable('user_withdrawal');    }

@@ -11,57 +11,45 @@ class Users extends Migration
         $this->forge->addField([
             'id' => [
                 'type'           => 'INT',
+                'constraint'     => 100,
+                'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'unique_id' => [
-                'type' => 'INT',
-                'null' => false,
+            'unique_id'     => [
+                'type'      => 'INT',
+                'null'      => false,
             ],
             'username' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '191',
-                'null'       => true,
+                'null'       => false,
             ],
             'balance' => [
                 'type'       => 'DECIMAL',
                 'constraint' => '20,8',
                 'default'    => '0.00000000',
+                'null'       => false,
             ],
             'cashouts' => [
                 'type'       => 'DECIMAL',
                 'constraint' => '20,8',
                 'default'    => '0.00000000',
+                'null'       => false,
             ],
             'plan_id' => [
-                'type' => 'INT',
-                'null' => true,
+                'type'      => 'INT',
+                'null'      => false,
             ],
             'reference_user_id' => [
-                'type' => 'INT',
-                'null' => false,
-            ],
-            'affiliate_earns' => [
-                'type'       => 'FLOAT',
-                'constraint' => '20,8',
-                'default'    => '0.00000000',
-                'null'       => false,
-            ],
-            'affiliate_paid' => [
-                'type'       => 'FLOAT',
-                'constraint' => '20,8',
-                'default'    => '0.00000000',
-                'null'       => false,
+                'type'      => 'INT',
+                'null'      => false,
             ],
             'ip_addr' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '25',
                 'null'       => false,
             ],
-            'created_at' => [
-                'type'       => 'TIMESTAMP',
-                'default'    => 'CURRENT_TIMESTAMP',
-                'null'       => true,
-            ],
+            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
         ]);
 
         $this->forge->addKey('id', true);
