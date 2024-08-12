@@ -65,6 +65,7 @@ class UserController extends BaseController
         $this->userModel->updateBalances($user_session['user_id'],$balance, $total_withdrawal);
 
         $getUserBalance = $this->userModel->getUserBalance($user_session['user_id']);
+
         $total_balance = number_format($getUserBalance,8,'.','');
 
         $active_plans = (array)$this->userPlanHistoryModel->getActiveUserPlans($user_session['user_id']);

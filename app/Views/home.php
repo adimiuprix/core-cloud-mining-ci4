@@ -1,5 +1,4 @@
 <form action="<?= base_url('authorize') ;?>" method="post">
-    <input type="hidden" name="reference_user_id"  value="<?php echo (isset($reference_user_id))?$reference_user_id:""; ?>">
     <input type="text" id="username" minlength="10" maxlength="100" pattern="[a-zA-Z0-9_-]+" name="username" placeholder="Enter Your Address" />
     <button class="but-hover" id="go_enter" onclick="return validateFormLogin()">Start mining</button>
 </form>

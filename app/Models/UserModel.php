@@ -50,12 +50,10 @@ class UserModel extends Model
             'ip_addr'           => $user_ip_addr,
         ]);
 
-        $user_id = $this->db->insertID();
-
         // Insert ke tabel user_plan_history
         $builder = $this->db->table('user_plan_history');
         $builder->insert([
-            'user_id' => $user_id,
+            'user_id' => $this->db->insertID(),
             'plan_id' => $plan->id,
             'status'  => 'active',
             'created_at' => date('Y-m-d H:i:s'),
@@ -72,7 +70,7 @@ class UserModel extends Model
              ->update();
     }
 
-    public function getUserBalance(int $user_id) :string
+    public function getUserBalance(int $user_id) :float
     {
         $result = $this->db->table('users')
             ->select('balance')
@@ -95,13 +93,13 @@ class UserModel extends Model
 
         $earning = 0;
         if ($result) {
-            foreach ($result as $val) {
-                $date1 = time();
-                $date2 = $val['last_sum'] ?: strtotime($val['created_at']);
-                $sec = $date1 - $date2;
-                $earning += $sec * ($val['earning_rate'] / 60);
+            $currentTime = time();
+            foreach ($result as $value) {
+                $lastSum  = $value['last_sum'] ?: strtotime($value['created_at']);
+                $sec = $currentTime - $lastSum;
+                $earning += $sec * ($value['earning_rate'] / 60);
 
-                $this->UserPlanHistoryModel->update($val['id'], ['last_sum' => time()]);
+                $this->UserPlanHistoryModel->update($value['id'], ['last_sum' => time()]);
             }
         }
 
