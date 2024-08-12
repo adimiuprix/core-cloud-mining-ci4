@@ -59,11 +59,8 @@ class UserController extends BaseController
         $balance = $this->userModel->getBalance($user_session);
 
         $withdrawals = $this->UserWithdrawalModel->get_withdrawals($user_session['user_id'], 'payment', null);
-        $total_withdrawal =  0;
 
-        foreach ($withdrawals as $value){
-            $total_withdrawal +=  $value['amount'];
-        }
+        $total_withdrawal = array_sum(array_column($withdrawals, 'amount'));
 
         $this->userModel->updateBalances($user_session['user_id'],$balance, $total_withdrawal);
 
