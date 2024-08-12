@@ -35,7 +35,7 @@ class UserModel extends Model
         return $query->getFirstRow('array') ?: false;
     }
 
-    public function createUser(string $username, int $reference_user_id, string $user_ip_addr): void
+    public function createUser(string $username, string $user_ip_addr): void
     {
         $plan = $this->db->table('plans')
             ->select('id')
@@ -43,15 +43,11 @@ class UserModel extends Model
             ->get()
             ->getRow();
 
-        $unique_id = random_int(10000, 99999);
-
         $builder = $this->db->table('users');
         $builder->insert([
             'username'          => $username,
             'plan_id'           => $plan->id,
-            'reference_user_id' => $reference_user_id,
             'ip_addr'           => $user_ip_addr,
-            'unique_id'         => $unique_id
         ]);
 
         $user_id = $this->db->insertID();

@@ -40,10 +40,6 @@ class Users extends Migration
                 'type'      => 'INT',
                 'null'      => false,
             ],
-            'reference_user_id' => [
-                'type'      => 'INT',
-                'null'      => false,
-            ],
             'ip_addr' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '25',

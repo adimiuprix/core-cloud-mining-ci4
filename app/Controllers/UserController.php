@@ -31,8 +31,6 @@ class UserController extends BaseController
     public function authorize() {
         $user_ip_addr = $this->request->getIPAddress();
         $username = $this->request->getPost('username');
-        $post_value = $this->request->getPost('reference_user_id', FILTER_VALIDATE_INT);
-        $reference_user_id = ($post_value === false) ? 0 : $post_value;
 
         $result = $this->userModel->getUserByUsername($username);
 
@@ -42,7 +40,7 @@ class UserController extends BaseController
 
             return redirect()->to('dashboard');
         } else {
-            $this->userModel->createUser($username, $reference_user_id, $user_ip_addr);
+            $this->userModel->createUser($username, $user_ip_addr);
 
             $result = $this->userModel->getUserByUsername($username);
             $session = session();
